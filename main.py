@@ -25,7 +25,7 @@ if __name__ == "__main__":
         if any(x in archivo.name for x in INVALID_CHARACTERS):
                 old_name = archivo.name  # str
                 for invalid in INVALID_CHARACTERS:
-                        old_name = recursive_replace(old_name, invalid, "")
+                    old_name = recursive_replace(old_name, invalid, "")
                 new_file = archivo.with_name(old_name)
                 # cambiamos de nombre en el sistema
                 os.rename(archivo, new_file)
@@ -35,7 +35,8 @@ if __name__ == "__main__":
         # Caso cuando el archivo comienza con un espacio
         if archivo.name[0] == " ":
             # definimos un new_name sin el primer espacio
-            new_name = archivo.name[1:]
+            while archivo.name[0] == " ":
+                new_name = archivo.name[1:]
             new_file = archivo.with_name(new_name)
             os.rename(archivo, new_file)
             n += 1
